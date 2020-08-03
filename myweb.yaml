@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: 10.5.10.59:5000/justme/myweb:1
+      - image: kubemaster:5000/justme/myweb:1
         imagePullPolicy: Always
         name: myweb
 
