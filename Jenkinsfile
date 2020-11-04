@@ -26,6 +26,7 @@ pipeline {
       steps{
         script {
           dockerImage = docker.build registry + ":$MY_BUILD"
+          echo "MY_BUILD = $MY_BUILD"
         }
       }
     }
