@@ -3,13 +3,19 @@ pipeline {
   environment {
     registry = "kubemaster:5000/justme/myweb"
     dockerImage = ""
+    MY_BUILD = ":$BUILD_ID" + "$BUILD_NUMBER"
   }
 
-  env.MY_BUILD = ":$BUILD_ID" + "$BUILD_NUMBER"
-
+  
   agent any
 
   stages {
+
+    stage("Env Variables") {
+      steps {
+                sh "printenv"
+            }
+      }
 
     stage('Checkout Source') {
       steps {
