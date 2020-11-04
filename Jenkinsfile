@@ -14,7 +14,6 @@ pipeline {
         git 'https://github.com/mibrahimmalik/playjenkins.git'
       }
     }
-
     stage('Build image') {
       steps{
         script {
@@ -22,7 +21,6 @@ pipeline {
         }
       }
     }
-
     stage('Push Image') {
       steps{
         script {
@@ -32,7 +30,6 @@ pipeline {
         }
       }
     }
-
     stage('Deploy App') {
       steps {
         script {
@@ -40,7 +37,5 @@ pipeline {
         }
       }
     }
-
   }
-
 }
