@@ -11,7 +11,7 @@ pipeline {
 
   stages {
 
-    stage("Env Variables") {
+    stage("Print ENV Variables") {
       steps {
                 sh "printenv"
             }
@@ -25,7 +25,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + env.MY_BUILD
+          dockerImage = docker.build registry + ":$MY_BUILD"
         }
       }
     }
