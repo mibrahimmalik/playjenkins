@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: kubemaster:5000/justme/myweb:$BUILD_NUMBER
+      - image: kubemaster:5000/justme/myweb:$BUILD_ID
         imagePullPolicy: Always
         name: myweb
 
