@@ -13,9 +13,9 @@ pipeline {
 
     stage("Print ENV Variables") {
       steps {
-                sh "printenv"
-            }
+        sh "printenv"
       }
+    }
 
     stage('Checkout Source') {
       steps {
@@ -25,7 +25,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$MY_BUILD"
+          dockerImage = docker.build registry + env.MY_BUILD
         }
       }
     }
@@ -41,7 +41,7 @@ pipeline {
 
   stage('Remove Unused docker image') {
      steps{
-      sh "docker rmi $registry:$MYBUILD"
+      sh "docker rmi $registry:$MY_BUILD"
      }
   }
 
