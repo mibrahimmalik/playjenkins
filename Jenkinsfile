@@ -41,7 +41,7 @@ pipeline {
 
   stage('Remove Unused docker image') {
      steps{
-      sh "docker rmi $registry:env.MYBUILD"
+      sh "docker rmi $registry:$MYBUILD"
      }
   }
 
