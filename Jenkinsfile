@@ -5,6 +5,8 @@ pipeline {
     dockerImage = ""
   }
 
+  env.MY_BUILD = ":$BUILD_ID" + "$BUILD_NUMBER"
+
   agent any
 
   stages {
@@ -17,7 +19,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_ID"
+          dockerImage = docker.build registry + env.MY_BUILD
         }
       }
     }
@@ -33,7 +35,7 @@ pipeline {
 
   stage('Remove Unused docker image') {
      steps{
-      sh "docker rmi $registry:$BUILD_NUMBER"
+      sh "docker rmi $registry:env.MYBUILD"
      }
   }
 
