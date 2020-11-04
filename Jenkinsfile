@@ -3,7 +3,7 @@ pipeline {
   environment {
     registry = "kubemaster:5000/justme/myweb"
     dockerImage = ""
-    MY_BUILD = ":$BUILD_ID" + "$BUILD_NUMBER"
+    MY_BUILD = "$BUILD_ID" + "$BUILD_NUMBER"
   }
 
   
