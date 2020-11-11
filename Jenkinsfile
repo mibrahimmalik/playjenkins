@@ -26,11 +26,11 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_ID"
           echo "MY_BUILD = $MY_BUILD"
           sh "pwd"
           sh "which docker"
           sh "/var/lib/docker version"
+          dockerImage = docker.build registry + ":$BUILD_ID"
         }
       }
     }
