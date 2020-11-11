@@ -30,9 +30,9 @@ pipeline {
           sh "pwd"
           sh "hostname"
           sh  "pwd"
-          sh "apt-get -qq update"
-          sh "apt-get -qq -y install curl"
-          sh  "curl -sSL https://get.docker.com/ | sh "
+          sh "sudo apt-get -qq update"
+          sh "sudo apt-get -qq -y install curl"
+          sh  "sudo curl -sSL https://get.docker.com/ | sh "
       
           dockerImage = docker.build registry + ":$BUILD_ID"
         }
