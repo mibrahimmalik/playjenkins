@@ -3,7 +3,7 @@ pipeline {
   environment {
     registry = "kubejenacr.azurecr.io/mib/myweb"
     dockerImage = ""
-    registryCredential = "$azure_acr"
+    registryCredential = 'azure_acr'
     MY_BUILD = "$BUILD_ID" + "$BUILD_NUMBER"
   }
 
@@ -26,7 +26,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$MY_BUILD"
+          dockerImage = docker.build registry + ":$BUILD_ID"
           echo "MY_BUILD = $MY_BUILD"
         }
       }
@@ -43,7 +43,7 @@ pipeline {
 
   stage('Remove Unused docker image') {
      steps{
-      sh "docker rmi $registry:$MY_BUILD"
+      sh "docker rmi $registry:$BUILD_ID"
      }
   }
 
