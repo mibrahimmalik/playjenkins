@@ -1,8 +1,9 @@
 pipeline {
 
   environment {
-    registry = "kubemaster:5000/justme/myweb"
+    registry = "kubejenacr.azurecr.io/mib/myweb"
     dockerImage = ""
+    registryCredential = "$azure_acr"
     MY_BUILD = "$BUILD_ID" + "$BUILD_NUMBER"
   }
 
