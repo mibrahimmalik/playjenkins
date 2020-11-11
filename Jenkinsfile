@@ -25,20 +25,23 @@ pipeline {
     }
     stage('Build image') {
       steps{
-          sh '''
-             hostname
-             pwd
-             apt-get -qq update && \
-             apt-get -qq -y install curl && \
-             curl -sSL https://get.docker.com/ | sh && \
-             curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
-             chmod +x ./kubectl && \
-             mv ./kubectl /usr/local/bin/kubectl && \
-             curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-             which docker"
-             /var/lib/docker version"
-          '''
+        script {
+          echo "MY_BUILD = $MY_BUILD"
+          sh "pwd"
+          sh "which docker"
+          sh "/var/lib/docker version"
+          sh "hostname"
+          sh  "pwd"
+          sh "apt-get -qq update"
+          sh "apt-get -qq -y install curl"
+          sh  "curl -sSL https://get.docker.com/ | sh "
+      
+          dockerImage = docker.build registry + ":$BUILD_ID"
+        }
       }
+
+
+
     }
     stage('Push Image') {
       steps{
