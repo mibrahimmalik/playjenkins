@@ -37,8 +37,10 @@ pipeline {
              which docker"
              /var/lib/docker version"
           '''
+        script {
           dockerImage = docker.build registry + ":$BUILD_ID"
         }
+      }
     }
     stage('Push Image') {
       steps{
