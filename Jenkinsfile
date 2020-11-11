@@ -27,9 +27,18 @@ pipeline {
       steps{
         script {
           echo "MY_BUILD = $MY_BUILD"
-          sh "pwd"
-          sh "which docker"
-          sh "/var/lib/docker version"
+          sh '''
+             pwd
+             apt-get -qq update && \
+             apt-get -qq -y install curl && \
+             curl -sSL https://get.docker.com/ | sh && \
+             curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+             chmod +x ./kubectl && \
+             mv ./kubectl /usr/local/bin/kubectl && \
+             curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+             which docker"
+             /var/lib/docker version"
+             '''
           dockerImage = docker.build registry + ":$BUILD_ID"
         }
       }
