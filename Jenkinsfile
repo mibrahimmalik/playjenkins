@@ -28,8 +28,6 @@ pipeline {
         script {
           echo "MY_BUILD = $MY_BUILD"
           sh "pwd"
-          sh "which docker"
-          sh "/var/lib/docker version"
           sh "hostname"
           sh  "pwd"
           sh "apt-get -qq update"
